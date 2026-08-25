@@ -1,34 +1,33 @@
-drop database alou;
-create database alou;
-use alou;
+drop database if exists ecommerce;
+create database if not exists ecommerce;
+use ecommerce;
 
 create table empresa(
-id int primary key,
+id int primary key auto_increment,
 cnpj char(14) not null,
-razao_social varchar(255) not null,
-nome_fantasia varchar(255) not null,
-fk_usuario int,
+razao_social varchar(175) not null,
+nome_fantasia varchar(175) not null,
 telefone int not null 
 );
 
 create table usuario(
-id int primary key,
+id int primary key auto_increment,
 nome varchar(50),
-cpf int(12) not null,
-email varchar(255) not null,
-senha varchar(255) not null,
-cargo varchar(20),
+cpf int(11) not null,
+email varchar(320) not null,
+senha varchar(50) not null,
+cargo enum('Analista', 'Gerente'),
 fk_empresa int, foreign key (fk_empresa) references empresa(id)
 );
 
-create table desktop(
-id int primary key,
-registro varchar(50),
-fk_empresa int, constraint fk_desktop_empresa foreign key (fk_empresa) references empresa(id)
+create table servidor(
+id int primary key auto_increment,
+nome varchar(50),
+fk_empresa int, constraint fk_servidor_empresa foreign key (fk_empresa) references empresa(id)
 );
 
 create table dashboard(
-id int primary key,
+id int primary key auto_increment,
 fk_empresa int, 
 fK_usuario int,
 constraint fk_empresa_dashboard foreign key (fk_empresa) references empresa(id),
@@ -36,18 +35,17 @@ constraint fk_usuario_dashboard foreign key (fK_usuario) references usuario(id)
 );
 
 create table captura(
-id int primary key,
-tipo varchar(20) constraint chk_hardware check(tipo in("CPU", "RAM", "Disco")),
-porcentagem_de_uso int,
-qtd_nucleos int,
-frequencia float,
-memoria_utilizada double,
-memoria_disponivel double,
-memoria_total double,
-espaco_total double,
-espaco_utilizado double,
-espaco_livre double,
+id int auto_increment,
+nome varchar(40),
+valor decimal(5,2),
+tipo varchar(50),
 horario datetime default current_timestamp,
 fk_dashboard int,
-constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id)
+fk_servidor int,
+primary key (id, fk_dashboard, fk_servidor),
+constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id),
+constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
+
+
+insert into empresa (cnpj, razao_social, nome_fantasia, telefone) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco', 40020022);
