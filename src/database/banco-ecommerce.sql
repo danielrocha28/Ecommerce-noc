@@ -4,34 +4,30 @@ use ecommerce;
 
 create table empresa(
 id int primary key auto_increment,
-cnpj char(14) not null,
-razao_social varchar(175) not null,
-nome_fantasia varchar(175) not null,
-telefone int not null 
+cnpj char(14) unique not null,
+razao_social varchar(175) unique not null,
+nome_fantasia varchar(175) not null
 );
 
 create table usuario(
 id int primary key auto_increment,
-nome varchar(50),
-cpf int(11) not null,
-email varchar(320) not null,
+nome varchar(50) not null,
+email varchar(320) unique not null ,
 senha varchar(50) not null,
-cargo enum('Analista', 'Gerente'),
-fk_empresa int, foreign key (fk_empresa) references empresa(id)
+cargo enum('Analista', 'Gerente') not null,
+fk_empresa int not null, foreign key (fk_empresa) references empresa(id)
 );
 
 create table servidor(
 id int primary key auto_increment,
-nome varchar(50),
+nome varchar(100),
 fk_empresa int, constraint fk_servidor_empresa foreign key (fk_empresa) references empresa(id)
 );
 
 create table dashboard(
 id int primary key auto_increment,
 fk_empresa int, 
-fK_usuario int,
-constraint fk_empresa_dashboard foreign key (fk_empresa) references empresa(id),
-constraint fk_usuario_dashboard foreign key (fK_usuario) references usuario(id)
+constraint fk_empresa_dashboard foreign key (fk_empresa) references empresa(id)
 );
 
 create table captura(
@@ -48,4 +44,4 @@ constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
 
 
-insert into empresa (cnpj, razao_social, nome_fantasia, telefone) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco', 40020022);
+insert into empresa (cnpj, razao_social, nome_fantasia) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco');
