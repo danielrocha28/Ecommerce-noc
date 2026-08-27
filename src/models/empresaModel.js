@@ -6,20 +6,21 @@ function buscarPorId(id) {
   return database.executar(instrucaoSql);
 }
 
-function listar() {
-  var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
-
-  return database.executar(instrucaoSql);
-}
-
 function buscarPorCnpj(cnpj) {
   var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
 
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(razaoSocial, cnpj) {
-  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj) VALUES ('${razaoSocial}', '${cnpj}')`;
+function listar() {
+  var instrucaoSql = `SELECT id, cnpj, razao_social FROM empresa`;
+
+  return database.executar(instrucaoSql);
+}
+
+
+function cadastrar(cnpj, razao_social, email_contato) {
+  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj) VALUES ('${cnpj}', '${razao_social}', '${email_contato}')`;
 
   return database.executar(instrucaoSql);
 }
