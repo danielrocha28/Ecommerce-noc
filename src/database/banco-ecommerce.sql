@@ -8,7 +8,7 @@ CREATE TABLE empresa (
     razao_social VARCHAR(175) UNIQUE NOT NULL,
     nome_fantasia VARCHAR(175) NOT NULL,
     email_contato VARCHAR(255) NOT NULL,
-    status ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
+    stats ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
     data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -28,24 +28,22 @@ create table servidor(
     fk_empresa int not null,    
     constraint fk_servidor_empresa foreign key (fk_empresa) references empresa(id)
 );
-
+/*
 create table dashboard(
     id int primary key auto_increment,
     fk_empresa int not null,
     constraint fk_empresa_dashboard foreign key (fk_empresa) references empresa(id)
 );
-
+verificar se é viavel manter essa table e demais 
+*/
 create table captura(
     id int primary key auto_increment, 
     nome varchar(40) not null,        
-    valor float not null,            
-    tipo varchar(50) not null,        
+    valor float not null,
+    unidade_de_medida varchar(30) not null,
     horario datetime default current_timestamp,
-    fk_dashboard int not null,        
+    -- fk_dashboard int not null,
     fk_servidor int not null,         
-    constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id),
+    -- constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id),
     constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
-
-
-insert into empresa (cnpj, razao_social, nome_fantasia, email_contato) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco', 'email@exemplo.com');
