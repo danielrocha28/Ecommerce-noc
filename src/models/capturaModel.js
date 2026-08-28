@@ -7,8 +7,15 @@ function buscarUltimasCapturas(fk_servidor, limite_linhas, nome) {
         WHERE fk_servidor = ${fk_servidor} and nome = ${nome} 
         ORDER BY id DESC 
         LIMIT ${limite_linhas};
+
+        
     `;
-    
+// a view é =
+//      SELECT nome, valor, horario
+//      FROM vwCapturas
+//      WHERE fk_servidor = ${fk_servidor} and nome = ${nome} 
+//      ORDER BY captura_id DESC
+//      LIMIT ${limite_linhas};
     return database.executar(instrucaoSql);
 }
 
@@ -21,6 +28,12 @@ function buscarTempoReal(fk_servidor, nome, limite_linhas) {
         LIMIT ${limite_linhas};
     `;
     
+    // a view é =
+//      SELECT valor, horario
+//      FROM vwCapturas
+//      WHERE fk_servidor = ${fk_servidor} and nome = ${nome} 
+//      ORDER BY captura_id DESC
+//      LIMIT ${limite_linhas};
     return database.executar(instrucaoSql);
 }
 

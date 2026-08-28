@@ -47,3 +47,39 @@ create table captura(
     -- constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id),
     constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
+
+
+CREATE OR REPLACE VIEW vwCapturas AS
+SELECT 
+    c.id AS captura_id,
+    c.nome,
+    c.valor,
+    c.unidade_de_medida,
+    c.horario,
+    c.fk_servidor,
+    s.nome AS nome_servidor,
+    s.fk_empresa
+FROM captura c
+JOIN servidor s ON c.fk_servidor = s.id;
+    
+    CREATE OR REPLACE VIEW vwAviso as    
+    SELECT
+		e.nome_fantasia,
+        s.nome AS servidor,
+        c.valor AS cpu
+    FROM empresa e
+    JOIN servidor s
+        ON e.id = s.fk_empresa
+    JOIN captura c
+        ON s.id = c.fk_servidor;
+        
+        
+        
+	CREATE OR REPLACE VIEW buscarDashPorEmpresa as
+        SELECT s.id, e.nome_fantasia
+     FROM servidor s
+     JOIN empresa e on e.id = s.fk_empresa; 
+    
+     
+     
+     
