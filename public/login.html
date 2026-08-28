@@ -93,6 +93,7 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
+        // Login Empresa
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
@@ -127,12 +128,23 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.CARGO_USUARIO = json.cargo;
 
+                    if (sessionStorage.CARGO_USUARIO == "Analista") {
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./public/analista.html";
                     }, 1000); // apenas para exibir o loading
-
+                    }
+                    else if (sessionStorage.CARGO_USUARIO == "Gerente") {
+                    setTimeout(function () {
+                        window.location = "./public/gestor.html";
+                    }, 1000); // apenas para exibir o loading
+                    }
+                    else if (sessionStorage.CARGO_USUARIO == "RH") {
+                    setTimeout(function () {
+                        window.location = "./public/empresa.html";
+                    }, 1000); // apenas para exibir o loading
+                    }
                 });
 
             } else {
@@ -151,6 +163,8 @@
 
         return false;
     }
+
+
 
     function sumirMensagem() {
         cardErro.style.display = "none"
