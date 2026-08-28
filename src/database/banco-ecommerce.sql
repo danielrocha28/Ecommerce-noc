@@ -3,19 +3,19 @@ create database if not exists ecommerce;
 use ecommerce;
 
 CREATE TABLE empresa (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cnpj CHAR(14) UNIQUE NOT NULL,
-    razao_social VARCHAR(175) UNIQUE NOT NULL,
-    nome_fantasia VARCHAR(175) NOT NULL,
-    email_contato VARCHAR(255) NOT NULL,
-    status ENUM('Ativo', 'Inativo') DEFAULT 'Ativo',
-    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+    id int primary key auto_increment,
+    cnpj char(14) unique not null,
+    razao_social varchar(160) unique not null,
+    nome_fantasia varchar(160) not null,
+    email_contato varchar(255) not null,
+    stats enum('Ativo', 'Inativo') default 'Ativo',
+    data_cadastro datetime default current_timestamp
 );
 
 create table usuario(
     id int primary key auto_increment,
     nome varchar(100) not null,
-    email varchar(320) unique not null,
+    email varchar(300) unique not null,
     senha varchar(255) not null,
     cargo enum('Analista', 'Gerente') not null,
     fk_empresa int not null, 
@@ -29,23 +29,13 @@ create table servidor(
     constraint fk_servidor_empresa foreign key (fk_empresa) references empresa(id)
 );
 
-create table dashboard(
-    id int primary key auto_increment,
-    fk_empresa int not null,
-    constraint fk_empresa_dashboard foreign key (fk_empresa) references empresa(id)
-);
-
 create table captura(
     id int primary key auto_increment, 
     nome varchar(40) not null,        
     valor float not null,            
     tipo varchar(50) not null,        
     horario datetime default current_timestamp,
-    fk_dashboard int not null,        
     fk_servidor int not null,         
-    constraint fk_dashboard_captura foreign key (fk_dashboard) references dashboard(id),
     constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
 
-
-insert into empresa (cnpj, razao_social, nome_fantasia, email_contato) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco', 'email@exemplo.com');
