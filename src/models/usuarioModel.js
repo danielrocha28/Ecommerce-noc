@@ -20,7 +20,41 @@ function cadastrar(nome, email, senha, cargo, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function remover(nome, email, fk_empresa) {
+    var instrucaoSql = `
+        delete from usuario
+        where id = (
+            select idUsuario
+            from (
+                select id as idUsuario
+                from usuario
+                where nome = '${nome}'
+                and email = '${email}'
+                and fk_empresa = ${fk_empresa}
+                limit 1
+            ) as subconsulta)
+        and fk_empresa = ${fk_empresa};`
+}
+
+function atualizar(nome, email, nova_senha, fk_empresa) {
+    var instrucaoSql = `
+        update usuario
+        set senha = '${nova_senha}'
+        where id = (
+            select idUsuario
+            from (
+                select id as idUsuario
+                from usuario
+                where nome = '${nome}'
+                and email = '${email}'
+                and fk_empresa = ${fk_empresa}
+                limit 1
+            ) as subconsulta)
+        and fk_empresa = ${fk_empresa};`
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    remover,
+    atualizar,
 };
