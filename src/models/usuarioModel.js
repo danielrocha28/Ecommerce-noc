@@ -34,6 +34,8 @@ function remover(nome, email, fk_empresa) {
                 limit 1
             ) as subconsulta)
         and fk_empresa = ${fk_empresa};`
+
+        return database.executar(instrucaoSql)
 }
 
 function atualizar(nome, email, nova_senha, fk_empresa) {
@@ -51,6 +53,8 @@ function atualizar(nome, email, nova_senha, fk_empresa) {
                 limit 1
             ) as subconsulta)
         and fk_empresa = ${fk_empresa};`
+
+        return database.executar(instrucaoSql)
 }
 module.exports = {
     autenticar,
