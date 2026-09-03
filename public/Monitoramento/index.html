@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitoramento do Sistema</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Monitoramento do Sistema</h1>
+        <p>Acompanhe os recursos do computador em tempo real.</p>
+    </header>
+
+    <main>
+
+        <section class="dashboard">
+
+            <div class="card">
+                <h2>CPU</h2>
+
+                <p>Uso</p>
+                <strong id="cpu">--%</strong>
+
+                <p>Núcleos físicos</p>
+                <strong id="cpu-count">--</strong>
+
+                <p>Frequência</p>
+                <strong id="cpu-freq">-- MHz</strong>
+            </div>
+
+            <div class="card">
+                <h2>Memória RAM</h2>
+
+                <p>Uso</p>
+                <strong id="memoria-percent">--%</strong>
+
+                <p>Utilizada</p>
+                <strong id="memoria-used">-- GB</strong>
+
+                <p>Total</p>
+                <strong id="memoria-total">-- GB</strong>
+            </div>
+
+            <div class="card">
+                <h2>Disco</h2>
+
+                <p>Utilizado</p>
+                <strong id="disco-used">-- GB</strong>
+
+                <p>Livre</p>
+                <strong id="disco-free">-- GB</strong>
+
+                <p>Total</p>
+                <strong id="disco-total">-- GB</strong>
+            </div>
+
+        </section>
+
+        <section class="acoes">
+
+            <button onclick="atualizarDados()">
+                Atualizar dados
+            </button>
+
+            <p id="status">
+                Aguardando dados...
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
