@@ -14,7 +14,7 @@ body {
   --tamanho-header: 80px;
   --tamanho-banner: calc(100vh - var(--tamanho-header));
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header));
   --tamanho-footer: 65px;
 }
 
@@ -110,6 +110,10 @@ ul.navbar{
   font-weight: 800;
 }
 
+
+.img_logo2 {
+  width: 50%;
+}
 /* MISSÃO VISÃO VALORES */
 
 .social {
@@ -165,7 +169,7 @@ ul.navbar{
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/fundoCadastro.png');
   background-size: cover;
 }
 
@@ -176,15 +180,15 @@ ul.navbar{
 }
 
 .card {
-  width: 50%;
+  width: 416px;
   background-color: #e5e5e5;
-  border-radius: 10px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: rgb(0, 0, 0);
   flex-direction: column;
-  height: fit-content;
+  height: 356px;
   padding: 20px 0;
 }
 
@@ -207,19 +211,21 @@ ul.navbar{
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 0;
 }
 
+.titulo_input {
+  font-weight: 400;
+}
+
 .formulario select {
-  border: 2px solid #32b9cd;
   background-color: white;
   color: gray;
   height: 36px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 0;
 }
 
@@ -227,19 +233,24 @@ ul.navbar{
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 5px 0;
+  margin: 0;
+  font-style: normal;
+  text-decoration: none;
+  font-weight: 200;
 }
+
+
 
 .botao {
   cursor: pointer;
   font-family: "Barlow", sans-serif;
   border: 0;
-  border-radius: 5px;
+  border-radius: 15px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 13px;
   color: #fff;
-  background-color: #ED145B;
-  width: 120px;
+  background-color: #005AFE;
+  width: 100px;
   height: 30px;
   align-self: center;
   margin-top: 20px;
@@ -295,10 +306,10 @@ ul.navbar{
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .btn {
