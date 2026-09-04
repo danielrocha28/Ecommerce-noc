@@ -1,11 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/empresa.css">
+    <title>EcomCore</title>
 </head>
+
 <body>
-    
+
+    <header>
+        <div class="logo">
+            <img src="./assets/logoPNG.png" alt="Logo EcomCore">
+        </div>
+
+        <button class="btn-voltar" type="button">
+            VOLTAR
+        </button>
+    </header>
+
+    <div class="identificacao-rh">
+        RH - EMPRESA XPTO
+    </div>
+
+    <main>
+        <section class="card">
+            <h2>FUNCIONÁRIOS</h2>
+            <div id="listaUsuarios">
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">Bruna Martins Marcelino</div>
+                        <div class="cargo">RH</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">Eryka Lima da Silva</div>
+                        <div class="cargo">RH</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">Daniel Rocha</div>
+                        <div class="cargo">GESTOR</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">Lucas da Silva Galvão</div>
+                        <div class="cargo">GESTOR</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">Giulia Bortoletto</div>
+                        <div class="cargo">ANALISTA</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+                <div class="user-item">
+                    <div class="avatar">
+                        <img src="./assets/imgs/perfil-usuario.png" alt="Perfil do funcionário">
+                    </div>
+                    <div class="user-info">
+                        <div class="nome">José Daniel</div>
+                        <div class="cargo">ANALISTA</div>
+                    </div>
+                    <div class="user-actions">
+                        <button class="alterar" type="button">
+                            ALTERAR
+                        </button>
+                        <button class="deletar" type="button">
+                            DELETAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+
+            <h2>CADASTRO</h2>
+
+            <form id="formCadastro">
+
+                <label for="nomeCompleto">NOME</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome completo" required>
+
+                <label for="email">E-MAIL</label>
+                <input type="email" id="email" name="email" placeholder="nome@empresa.com.br" required>
+
+                <label for="cargo">PERFIL</label>
+                <select id="cargo" name="cargo" required>
+                    <option value="" disabled selected>
+                        Selecione o perfil
+                    </option>
+                    <option value="analista">Analista</option>
+                    <option value="gestor">Gestor</option>
+                    <option value="rh">RH</option>
+                </select>
+
+                <label for="senha">SENHA</label>
+                <input type="password" id="senha" name="senha" placeholder="••••••••••••" required>
+
+                <label for="confirmarSenha">CONFIRMAÇÃO DE SENHA</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="••••••••••••" required>
+
+                <div class="btn-finalizar-wrap">
+                    <button class="btn-finalizar" type="submit">
+                        FINALIZAR
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
 </body>
+
 </html>

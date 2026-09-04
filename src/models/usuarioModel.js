@@ -56,9 +56,34 @@ function atualizar(nome, email, nova_senha, fk_empresa) {
 
         return database.executar(instrucaoSql)
 }
+
+function listar(fk_empresa) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorId(fk_empresa, id) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and id = ${id}`
+
+    return database.executar(instrucaoSql)
+}
+
+function esqueceuSenha(senha, id, cargo) {
+    var instrucaoSql = `update usuario
+    set senha = ${senha}
+    where id = ${id}
+    and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     remover,
     atualizar,
+    listar,
+    listarPorId,
+    esqueceuSenha,
 };
