@@ -58,22 +58,46 @@ function atualizar(nome, email, nova_senha, fk_empresa) {
 }
 
 function listar(fk_empresa) {
-    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa}`
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} order by cargo and nome `
 
     return database.executar(instrucaoSql)
 }
 
-function listarPorId(fk_empresa, id) {
-    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and id = ${id}`
+function listarPorNome(fk_empresa, nome) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome}`
 
     return database.executar(instrucaoSql)
 }
 
-function esqueceuSenha(senha, id, cargo) {
+function listarPorCargo(fk_empresa, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorNomeCargo(fk_empresa, nome, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function esqueceuSenha(senha, email, id, cargo) {
     var instrucaoSql = `update usuario
-    set senha = ${senha}
+    set senha = ${senha}, email = ${email}
     where id = ${id}
     and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function buscarEmailPendentes(id, nome, email) {
+    var instrucaoSql = `SELECT id, nome, email, senha FROM usuario WHERE cargo = 'RH' and enviou_email = 0`;
+
+    return database.executar(instrucaoSql)
+}
+
+function marcarComoEnviado(id) {
+    var instrucaoSql = `update usuario set enviou_email = 1 where id = ${id}`
 
     return database.executar(instrucaoSql)
 }
@@ -84,6 +108,10 @@ module.exports = {
     remover,
     atualizar,
     listar,
-    listarPorId,
+    listarPorNome,
+    listarPorCargo,
+    listarPorNomeCargo,
+    buscarEmailPendentes,
+    marcarComoEnviado,
     esqueceuSenha,
 };
