@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #0A0C14;
   font-family: "Archivo", sans-serif;
   font-optical-sizing: auto;
 }
@@ -119,32 +119,140 @@ ul.navbar{
 .social {
   background-color: #e5e5e5;
   display: flex;
+  height: 100vh;
 }
 
 .social .container {
   justify-content: center;
+  flex-direction: column;
 }
 
-.box img {
-  width: 170px;
-}
 
-.social .container .boxes {
+
+.social .container .box  {
   display: flex;
-  justify-content: space-between;
+  justify-content:left;
   width: 100%;
-  padding: 30px 0;
+  padding: 40px 0;
+
 }
 
+.box h4 {
+
+  font-size: 70px ;
+  color: #0A0C14;
+  margin: 0;
+  
+}
+
+.box span {
+
+  font-size: 70px ;
+  color: #005AFE;
+   
+}
 .social p {
-  text-align: center;
+  text-align: left;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left ;
 }
+
+.social .container .metricas  {
+  display: flex;
+  justify-content:space-between;
+  width: 100%;
+  padding: 40px 0;}
+
+  .metrica h2 {
+
+  font-size: 50px ;
+  color: #005AFE;
+  margin: 0;
+
+  
+}
+
+ .metricacentro h2 {
+
+  display: flex;
+  justify-content: center;
+  
+}
+
+.social p {
+  text-align: left;
+}
+
+/* Serviços*/
+
+.servicos {
+  height: 100vh;
+  width: 100%;
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+ 
+}
+
+.minisessao{
+  background-color:#e5e5e5 ;
+  width: 20%;
+  height: auto;
+  margin-left: 30px;
+  border-top: 3px  solid #0A0C14;
+  padding: 15px;
+  
+}
+
+.areatotal{
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.area1 {
+
+  display: flex;
+  flex-direction: row;
+}
+.area2 {
+
+  display: flex;
+  flex-direction: row;
+}
+
+.servicos h1 {
+
+  display: flex;
+  justify-content: left;
+  margin: 40px;
+  font-size: 50px ;
+
+}
+
+.passo-passo{
+  width: 100%;
+  height: 100vh;
+  background-color: #e5e5e5;
+}
+
+.tutorial{
+   background-color:#f2f1fa ;
+  width: 25%;
+  height: auto;
+  margin-left: 30px;
+  border: 1px solid #D8D9D1;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+
 
 /* FOOTER */
 
