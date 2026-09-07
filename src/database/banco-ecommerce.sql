@@ -18,6 +18,7 @@ create table usuario(
     email varchar(300) unique not null,
     senha varchar(255) not null,
     cargo enum('Analista', 'Gerente', 'RH') not null,
+    enviou_email tinyint(1) default 0,
     fk_empresa int not null, 
     foreign key (fk_empresa) references empresa(id)
 );
@@ -38,10 +39,6 @@ create table captura(
     fk_servidor int not null,         
     constraint fk_servidor_captura foreign key (fk_servidor) references servidor(id)
 );
-
-insert into empresa (cnpj, razao_social, nome_fantasia, email_contato) values ('60746948000112', 'Banco Bradesco S.A.', 'Bradesco', 'email@exemplo.com');
-insert into usuario (nome, email, senha, fk_empresa) value ('Beth', 'xpto@mercado.livre', '12345678', 1);
-insert into usuario (nome, email, senha, cargo, fk_empresa) value ('William', 'analista@mercado.livre','87654321', 'Analista',  1);
 
 CREATE OR REPLACE VIEW vwCapturas AS
 SELECT 
@@ -88,10 +85,13 @@ INSERT INTO usuario (nome, email, senha, cargo, fk_empresa)
 VALUES ('William', 'analista@mercado.livre','87654321', 'Analista', 1);
 
 -- 3. Inserindo os usuários solicitados (Adicionado o 'fk_empresa')
-INSERT INTO usuario (nome, email, senha, cargo, fk_empresa) VALUES 
+INSERT INTO usuario (nome, email, senha, cargo, enviou_email, fk_empresa) VALUES 
 ('Valdito', 'valdito@gmail.com', 'Senha123', 'Gerente', 1),
 ('Ashey', 'ashey@gmail.com', 'Senha123', 'Analista', 1),
-('Math', 'math@gmail.com', 'Senha123', 'RH', 1);
+('Math', 'math@gmail.com', 'Senha123', 'RH', default, 1);
+
+INSERT INTO usuario (nome, email, senha, cargo, enviou_email, fk_empresa) VALUES 
+('Math', 'math@gmail.com', 'Senha123', 'RH', default, 1);
 
 -- 4. BÔNUS: Inserindo servidores vinculados à empresa 1
 INSERT INTO servidor (nome, fk_empresa) VALUES 
@@ -104,6 +104,7 @@ INSERT INTO captura (nome, valor, unidade_de_medida, fk_servidor) VALUES
 ('Memoria RAM', 64.0, '%', 1),
 ('CPU', 42.1, '%', 2),
 ('Memoria RAM', 55.3, '%', 2);
+
 
 
 SELECT * FROM usuario;

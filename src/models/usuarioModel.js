@@ -14,7 +14,7 @@ function cadastrar(nome, email, senha, cargo, fkEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha, fkEmpresa);
     
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha, fk_empresa) VALUES ('${nome}', '${email}', '${cargo}' '${senha}', '${fkEmpresa}');
+        INSERT INTO usuario (nome, email, senha, fk_empresa) VALUES ('${nome}', '${email}', '${cargo}', '${senha}', '${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -56,9 +56,62 @@ function atualizar(nome, email, nova_senha, fk_empresa) {
 
         return database.executar(instrucaoSql)
 }
+
+function listar(fk_empresa) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} order by cargo and nome `
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorNome(fk_empresa, nome) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorCargo(fk_empresa, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorNomeCargo(fk_empresa, nome, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function esqueceuSenha(senha, email, id, cargo) {
+    var instrucaoSql = `update usuario
+    set senha = ${senha}, email = ${email}
+    where id = ${id}
+    and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function buscarEmailPendentes() {
+    var instrucaoSql = `SELECT id, nome, email, senha FROM usuario WHERE cargo = 'RH' and enviou_email = 0`;
+
+    return database.executar(instrucaoSql)
+}
+
+function marcarComoEnviado(id) {
+    var instrucaoSql = `update usuario set enviou_email = 1 where id = ${id}`
+
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     remover,
     atualizar,
+    listar,
+    listarPorNome,
+    listarPorCargo,
+    listarPorNomeCargo,
+    buscarEmailPendentes,
+    marcarComoEnviado,
+    esqueceuSenha,
 };
