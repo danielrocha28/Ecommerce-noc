@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Monitoramento do Sistema</title>
@@ -57,6 +58,19 @@
                 <strong id="disco-total">-- GB</strong>
             </div>
 
+            <div class="card">
+                <h2>Rede</h2>
+
+                <p>Enviada</p>
+                <strong id="bytes-recebidos">-- MB</strong>
+
+                <p>Recebida</p>
+                <strong id="bytes-enviados">-- MB</strong>
+
+                <p>Atual</p>
+                <strong id="mbps-total">-- MBPS</strong>
+            </div>
+
         </section>
 
         <section class="acoes">
@@ -73,7 +87,10 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js">
+        window.onload = atualizarDados()
+    </script>
 
 </body>
+
 </html>

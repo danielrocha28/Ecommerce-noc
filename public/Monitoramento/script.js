@@ -41,6 +41,12 @@ async function atualizarDados() {
         document.getElementById("disco-total").textContent =
             dados.disco_total + " GB";
 
+        document.getElementById("bytes-recebidos").textContent =
+            dados.bytes_recebidos + " Mb";
+        document.getElementById("bytes-enviados").textContent =
+            dados.bytes_enviados + " Mb";
+        document.getElementById("mbps-total").textContent =
+            dados.mbps_total + " MBPS";
         status.textContent = "Dados atualizados com sucesso!";
 
     } catch (erro) {
@@ -50,4 +56,5 @@ async function atualizarDados() {
         status.textContent =
             "Erro ao obter os dados do computador.";
     }
+    setTimeout(atualizarDados(), 2000)
 }
