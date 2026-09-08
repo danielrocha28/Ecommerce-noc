@@ -28,7 +28,7 @@ header {
 }
 
 header h1 {
-    color: #ffffff;
+    color: #005AFE;;
     font-size: 28px;
     font-weight: 700;
     margin: 0;
@@ -48,7 +48,7 @@ main {
 }
 
 .img_logo2 {
-  width: 50%;
+  width: 80%;
 }
 
 .dashboard {
@@ -148,7 +148,7 @@ main {
 
 button {
     border: none;
-    background-color: #005AFE;
+    background-color: #005AFE;;
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 22px;
@@ -163,7 +163,7 @@ button {
 }
 
 button:hover {
-    background-color: #0048d8;
+    background-color: #005AFE;;
     transform: translateY(-2px);
     box-shadow:
         0 8px 20px rgba(0, 90, 254, 0.25);
