@@ -7,7 +7,7 @@ def conectar():
         host="localhost",
         port=3306,
         user="aluno",
-        passwd="aluninho@1234",
+        passwd="aluninho1234@",
         database="ecommerce"
     )
 
@@ -86,8 +86,49 @@ def pegar_mac():
             if endereco.family == p.AF_LINK:
                 return endereco.address
 
-def capturar():
+def discretizar_cpu(cpu):
+    if cpu < 75:
+        return "Bom"
+    elif cpu < 85:
+        return "Alerta"
+    else:
+        return "Perigo"
 
+def discretizar_memoria(memoria):
+    if memoria < 75:
+        return "Bom"
+    elif memoria < 85:
+        return "Alerta"
+    else:
+        return "Perigo"
+
+def discretizar_disco(disco):
+    if disco < 75:
+        return "Bom"
+    elif disco < 85:
+        return "Alerta"
+    else:
+        return "Perigo"
+
+def discretizar_rede(rede):
+    if rede < 50:
+        return "Bom"
+    elif rede < 100:
+        return "Alerta"
+    else:
+        return "Perigo"
+
+def discretizar_temperatura(temperatura):
+    if temperatura is None:
+        return "Não disponível"
+    elif temperatura <= 80:
+        return "Bom"
+    elif temperatura < 90:
+        return "Alerta"
+    else:
+        return "Perigo"
+
+def capturar():
     for i in range(10):
         cpu = p.cpu_percent(interval=1)
         memoria = p.virtual_memory().percent
@@ -97,13 +138,13 @@ def capturar():
 
         print("\n===== CAPTURA", i + 1, "=====")
         print("Código MAC:", pegar_mac())
-        print("CPU:", cpu, "%")
-        print("Memória:", memoria, "%")
-        print("Disco:", disco, "%")
-        print("Rede:", rede, "Mbps")
+        print("CPU:", cpu, "%", discretizar_cpu(cpu))
+        print("Memória:", memoria, "%", discretizar_memoria(memoria))
+        print("Disco:", disco, "%", discretizar_disco(disco))
+        print("Rede:", rede, "Mbps", discretizar_rede(rede))
         
         if temperatura is not None:
-            print("Temperatura CPU:", temperatura, "°C")
+            print("Temperatura CPU:", temperatura, "°C", discretizar_temperatura(temperatura))
         else:
             print("Temperatura CPU: Não disponível")
 
