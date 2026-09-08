@@ -58,18 +58,61 @@ function atualizar(nome, email, nova_senha, cargo, fk_empresa) {
         return database.executar(instrucaoSql)
 }
 
+function listar(fk_empresa) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} order by cargo and nome `
 
-function listar() {
-  var instrucaoSql = `SELECT id, nome, email, cargo, fk_empresa FROM usuario`;
-
-  return database.executar(instrucaoSql);
+    return database.executar(instrucaoSql)
 }
 
+function listarPorNome(fk_empresa, nome) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorCargo(fk_empresa, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function listarPorNomeCargo(fk_empresa, nome, cargo) {
+    var instrucaoSql = `Select nome, email, cargo from usuario where fk_empresa = ${fk_empresa} and nome = ${nome} and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function esqueceuSenha(senha, email, id, cargo) {
+    var instrucaoSql = `update usuario
+    set senha = ${senha}, email = ${email}
+    where id = ${id}
+    and cargo = ${cargo}`
+
+    return database.executar(instrucaoSql)
+}
+
+function buscarEmailPendentes() {
+    var instrucaoSql = `SELECT id, nome, email, senha FROM usuario WHERE cargo = 'RH' and enviou_email = 0`;
+
+    return database.executar(instrucaoSql)
+}
+
+function marcarComoEnviado(id) {
+    var instrucaoSql = `update usuario set enviou_email = 1 where id = ${id}`
+
+    return database.executar(instrucaoSql)
+}
 
 module.exports = {
     autenticar,
     cadastrar,
     remover,
     atualizar,
-    listar
+    listar,
+    listarPorNome,
+    listarPorCargo,
+    listarPorNomeCargo,
+    buscarEmailPendentes,
+    marcarComoEnviado,
+    esqueceuSenha,
 };

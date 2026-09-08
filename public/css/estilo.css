@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: #0A0C14;
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
 }
 
 :root {
   --tamanho-header: 80px;
-  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-banner: calc(100vh - var(--tamanho-header));
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header));
   --tamanho-footer: 65px;
 }
 
@@ -23,7 +26,7 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  color: #060814cf;
 }
 
 .header .container {
@@ -34,26 +37,32 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: #fff;
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .agora {
   font-weight: 800;
 }
 
+.btn_login {
+  padding: 8px 20px ;
+  border-radius: 20px;
+  background-color: #005AFE;
+}
+
 .navbar {
-  width: 300px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
+  color: #ffffff;
 }
 
-.titulo {
-  color: #32b9cd;
-  width: fit-content;
-  font-weight: 500;
+ul.navbar{
+  gap: 20px;
 }
 
 .header h1 {
@@ -65,58 +74,190 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/fundoInteiro.png');
   background-size: cover;
 }
 
 .banner .container {
   justify-content: center;
-  align-items: center;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.div_btn_solicitar {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  margin-left: 200px;
+}
+
+.btn_solicitar {
+  background-color: #005AFE;
+  padding: 10px 15px;
+  border-radius: 20px;
 }
 
 .banner .container p {
   width: 50%;
   margin: 0;
   padding: 0;
-  font-size: 36px;
+  font-size: 17px;
+  font-weight: 100;
 }
 
 .banner .container span {
   font-weight: 800;
 }
 
+
+.img_logo2 {
+  width: 50%;
+}
 /* MISSÃO VISÃO VALORES */
 
 .social {
   background-color: #e5e5e5;
   display: flex;
+  height: 100vh;
 }
 
 .social .container {
   justify-content: center;
+  flex-direction: column;
 }
 
-.box img {
-  width: 170px;
-}
 
-.social .container .boxes {
+
+.social .container .box  {
   display: flex;
-  justify-content: space-between;
+  justify-content:left;
   width: 100%;
-  padding: 30px 0;
+  padding: 40px 0;
+
 }
 
+.box h4 {
+
+  font-size: 70px ;
+  color: #0A0C14;
+  margin: 0;
+  
+}
+
+.box span {
+
+  font-size: 70px ;
+  color: #005AFE;
+   
+}
 .social p {
-  text-align: center;
+  text-align: left;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left ;
 }
+
+.social .container .metricas  {
+  display: flex;
+  justify-content:space-between;
+  width: 100%;
+  padding: 40px 0;}
+
+  .metrica h2 {
+
+  font-size: 50px ;
+  color: #005AFE;
+  margin: 0;
+
+  
+}
+
+ .metricacentro h2 {
+
+  display: flex;
+  justify-content: center;
+  
+}
+
+.social p {
+  text-align: left;
+}
+
+/* Serviços*/
+
+.servicos {
+  height: 100vh;
+  width: 100%;
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+ 
+}
+
+.minisessao{
+  background-color:#e5e5e5 ;
+  width: 20%;
+  height: auto;
+  margin-left: 30px;
+  border-top: 3px  solid #0A0C14;
+  padding: 15px;
+  
+}
+
+.titulo-tutorial {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #005AFE;
+}
+
+.areatotal{
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.area1 {
+
+  display: flex;
+  flex-direction: row;
+}
+.area2 {
+
+  display: flex;
+  flex-direction: row;
+}
+
+.servicos h1 {
+
+  display: flex;
+  justify-content: left;
+  margin: 40px;
+  font-size: 50px ;
+
+}
+
+.passo-passo{
+  width: 100%;
+  height: 100vh;
+  background-color: #e5e5e5;
+}
+
+.tutorial{
+   background-color:#d7d6ce ;
+  width: 25%;
+  height: auto;
+  margin-left: 30px;
+  border: 1px solid #D8D9D1;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+
 
 /* FOOTER */
 
@@ -141,7 +282,7 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-image: url('../assets/fundoCadastro.png');
   background-size: cover;
 }
 
@@ -152,15 +293,15 @@ body {
 }
 
 .card {
-  width: 50%;
+  width: 416px;
   background-color: #e5e5e5;
-  border-radius: 10px;
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: rgb(0, 0, 0);
   flex-direction: column;
-  height: fit-content;
+  height: 356px;
   padding: 20px 0;
 }
 
@@ -183,19 +324,21 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 0;
 }
 
+.titulo_input {
+  font-weight: 400;
+}
+
 .formulario select {
-  border: 2px solid #32b9cd;
   background-color: white;
   color: gray;
   height: 36px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 0;
 }
 
@@ -203,19 +346,24 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 5px 0;
+  margin: 0;
+  font-style: normal;
+  text-decoration: none;
+  font-weight: 200;
 }
+
+
 
 .botao {
   cursor: pointer;
   font-family: "Barlow", sans-serif;
   border: 0;
-  border-radius: 5px;
+  border-radius: 15px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 13px;
   color: #fff;
-  background-color: #ED145B;
-  width: 120px;
+  background-color: #005AFE;
+  width: 100px;
   height: 30px;
   align-self: center;
   margin-top: 20px;
@@ -271,10 +419,10 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: none;
   padding: 10px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .btn {
