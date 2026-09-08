@@ -209,6 +209,11 @@ ul.navbar{
   
 }
 
+.titulo-tutorial {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #005AFE;
+}
+
 .areatotal{
   display: flex;
   align-items: end;
@@ -243,7 +248,7 @@ ul.navbar{
 }
 
 .tutorial{
-   background-color:#f2f1fa ;
+   background-color:#d7d6ce ;
   width: 25%;
   height: auto;
   margin-left: 30px;
