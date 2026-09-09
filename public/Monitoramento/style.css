@@ -9,7 +9,7 @@
 
 body {
     min-height: 100vh;
-    background-color: #272b38;
+    background-color: #f2f2f7;
     color: #ffffff;
     font-family: "Archivo", sans-serif;
     display: flex;
@@ -17,28 +17,27 @@ body {
 }
 
 header {
-    width: 100%;
-    min-height: 80px;
-    padding: 20px 8%;
-    background-color: #080A12;
+    position: relative;
+    background: #0a0a1a;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    justify-content: center;
+    padding: 20px 40px;
+    height: 105px;
+    max-height: 200px;
 }
 
-header h1 {
-    color: #005AFE;;
-    font-size: 28px;
-    font-weight: 700;
-    margin: 0;
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-header p {
-    color: #9ca3af;
-    font-size: 14px;
-    font-weight: 300;
-    margin: 0;
+.logo img {
+    max-width: 500px;
+    max-height: 150px;
+    object-fit: contain;
 }
 
 main {
@@ -48,13 +47,14 @@ main {
 }
 
 .img_logo2 {
-  width: 80%;
+    width: 80%;
 }
 
 .dashboard {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 60px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
@@ -148,7 +148,8 @@ main {
 
 button {
     border: none;
-    background-color: #005AFE;;
+    background-color: #005AFE;
+    ;
     color: #ffffff;
     padding: 12px 24px;
     border-radius: 22px;
@@ -163,7 +164,8 @@ button {
 }
 
 button:hover {
-    background-color: #005AFE;;
+    background-color: #005AFE;
+    ;
     transform: translateY(-2px);
     box-shadow:
         0 8px 20px rgba(0, 90, 254, 0.25);
@@ -176,13 +178,17 @@ button:active {
 
 #status {
     margin-top: 15px;
-    color: #737d90;
-    font-size: 13px;
+    color: #000000;
+    font-size: 15px;
     font-weight: 300;
 }
 
-
-/* Notebook */
+#hora {
+    margin-top: 15px;
+    color: #000000;
+    font-size: 15x;
+    font-weight: 300;
+}
 
 @media (max-width: 1100px) {
     .dashboard {
@@ -190,8 +196,6 @@ button:active {
     }
 
 }
-
-/* Tablet */
 
 @media (max-width: 700px) {
     header {
@@ -218,8 +222,6 @@ button:active {
     }
 
 }
-
-/* Celular */
 
 @media (max-width: 450px) {
 

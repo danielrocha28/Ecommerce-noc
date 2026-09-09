@@ -1,6 +1,12 @@
-async function atualizarDados() {
+let atualizacaoAtiva = true;
 
+async function atualizarDados() {
+    if (!atualizacaoAtiva) {
+        return;
+    }
+    
     const status = document.getElementById("status");
+    const horario = document.getElementById("hora");
 
     status.textContent = "Coletando dados...";
 
@@ -48,6 +54,8 @@ async function atualizarDados() {
         document.getElementById("mbps-total").textContent =
             dados.mbps_total + " MBPS";
         status.textContent = "Dados atualizados com sucesso!";
+        horario.textContent = "Última Atualização: " + dados.horario_formatado;
+
 
     } catch (erro) {
 
@@ -56,5 +64,24 @@ async function atualizarDados() {
         status.textContent =
             "Erro ao obter os dados do computador.";
     }
-    setTimeout(atualizarDados(), 2000)
+    setTimeout(atualizarDados, 2000)
 }
+
+function alternarAtualizacao() {
+    atualizacaoAtiva = !atualizacaoAtiva;
+
+    const botao = document.getElementById("botao-atualizacao");
+    const status = document.getElementById("status");
+
+    if (atualizacaoAtiva) {
+        botao.textContent = "Pausar atualização";
+        atualizarDados();
+    } else {
+        botao.textContent = "Retomar atualização";
+        status.textContent = "Aguardando dados...";
+        horario.textContent = "Última Atualização: " + dados.horario_formatado;
+        
+    }
+}
+
+window.onload = atualizarDados()

@@ -3,25 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoramento do Sistema</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <header>
-        <img class="img_logo" src="../assets/Logo.png"></img>
-        <h1>Dashboard | Monitoramento do Sistema</h1>
-        <p></p>
-        <p></p>
-
+        <div class="logo">
+            <img src="../assets/logoPNG.png" alt="Logo EcomCore">
+        </div>
     </header>
 
     <main>
 
         <section class="dashboard">
-
             <div class="card">
                 <h2>CPU</h2>
 
@@ -73,26 +69,23 @@
                 <p>Atual</p>
                 <strong id="mbps-total">-- MBPS</strong>
             </div>
-
         </section>
 
         <section class="acoes">
-
-            <button onclick="atualizarDados()">
-                Atualizar dados
+            <button id="botao-atualizacao" onclick="alternarAtualizacao()">
+                Pausar atualização
             </button>
-
             <p id="status">
                 Aguardando dados...
             </p>
-
+            <p id="hora">
+                Última Atualização: 00:00:00
+            </p>
         </section>
 
     </main>
 
-    <script src="script.js">
-        window.onload = atualizarDados()
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
