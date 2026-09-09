@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start:web": "node app.js",
+    "start:monitoramento": "cd public/Monitoramento && python servidor.py",
+    "start": "concurrently \"npm run start:web\" \"npm run start:monitoramento\"",
     "dev": "nodemon --exec node app.js"
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
