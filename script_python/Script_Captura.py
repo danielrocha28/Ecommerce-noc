@@ -7,31 +7,31 @@ def conectar():
         host="localhost",
         port=3306,
         user="aluno",
-        passwd="aluninho1234@",
+        passwd="Seg2805/rocha",
         database="ecommerce"
     )
 
-def temperatura_cpu():
-    try:
-        temperaturas = p.sensors_temperatures()
+# def temperatura_cpu():
+#     try:
+#         temperaturas = p.sensors_temperatures()
 
-        if not temperaturas:
-            return None
+#         if not temperaturas:
+#             return None
         
-        temperaturas_cpu = []
+#         temperaturas_cpu = []
 
-        for nome, sensores in temperaturas.items():
-            for sensor in sensores:
-                if sensor.current is not None:
-                    temperaturas_cpu.append(sensor.current)
+#         for nome, sensores in temperaturas.items():
+#             for sensor in sensores:
+#                 if sensor.current is not None:
+#                     temperaturas_cpu.append(sensor.current)
 
-        if len(temperaturas_cpu) > 0:
-            return sum(temperaturas_cpu) / len(temperaturas_cpu)
+#         if len(temperaturas_cpu) > 0:
+#             return sum(temperaturas_cpu) / len(temperaturas_cpu)
         
-        return None
+#         return None
     
-    except Exception:
-        return None
+#     except Exception:
+#         return None
 
 def captura_rede():
     rede_inicial = p.net_io_counters()
@@ -49,7 +49,7 @@ def captura_rede():
 
     return velocidade_mbps
 
-def inserir(cpu, memoria, disco, rede, temperatura):
+def inserir(cpu, memoria, disco, rede):
     db = conectar()
     if db.is_connected():
         try:
@@ -65,8 +65,8 @@ def inserir(cpu, memoria, disco, rede, temperatura):
                     ("Disco", disco, "Porcentagem"),
                     ("Rede", rede, "Mbps")
                 ]
-                if temperatura is not None:
-                    valores.append(("Temperatura CPU", temperatura, "Graus Celsius"))
+                # if temperatura is not None:
+                #     valores.append(("Temperatura CPU", temperatura, "Graus Celsius"))
                     
                 cursor.executemany(query, valores)
                 db.commit()
@@ -88,7 +88,7 @@ def pegar_mac():
 
 def discretizar_cpu(cpu):
     if cpu < 75:
-        return "Bom"
+        return "Estável"
     elif cpu < 85:
         return "Alerta"
     else:
@@ -96,7 +96,7 @@ def discretizar_cpu(cpu):
 
 def discretizar_memoria(memoria):
     if memoria < 75:
-        return "Bom"
+        return "Estável"
     elif memoria < 85:
         return "Alerta"
     else:
@@ -104,7 +104,7 @@ def discretizar_memoria(memoria):
 
 def discretizar_disco(disco):
     if disco < 75:
-        return "Bom"
+        return "Estável"
     elif disco < 85:
         return "Alerta"
     else:
@@ -112,21 +112,21 @@ def discretizar_disco(disco):
 
 def discretizar_rede(rede):
     if rede < 50:
-        return "Bom"
+        return "Estável"
     elif rede < 100:
         return "Alerta"
     else:
         return "Perigo"
 
-def discretizar_temperatura(temperatura):
-    if temperatura is None:
-        return "Não disponível"
-    elif temperatura <= 80:
-        return "Bom"
-    elif temperatura < 90:
-        return "Alerta"
-    else:
-        return "Perigo"
+# def discretizar_temperatura(temperatura):
+#     if temperatura is None:
+#         return "Não disponível"
+#     elif temperatura <= 80:
+#         return "Estável"
+#     elif temperatura < 90:
+#         return "Alerta"
+#     else:
+#         return "Perigo"
 
 def capturar():
     for i in range(10):
@@ -134,7 +134,7 @@ def capturar():
         memoria = p.virtual_memory().percent
         disco = p.disk_usage("C:\\").percent
         rede = captura_rede()
-        temperatura = temperatura_cpu()
+        # temperatura = temperatura_cpu()
 
         print("\n===== CAPTURA", i + 1, "=====")
         print("Código MAC:", pegar_mac())
@@ -143,17 +143,17 @@ def capturar():
         print("Disco:", disco, "%", discretizar_disco(disco))
         print("Rede:", rede, "Mbps", discretizar_rede(rede))
         
-        if temperatura is not None:
-            print("Temperatura CPU:", temperatura, "°C", discretizar_temperatura(temperatura))
-        else:
-            print("Temperatura CPU: Não disponível")
+        # if temperatura is not None:
+            # print("Temperatura CPU:", temperatura, "°C", discretizar_temperatura(temperatura))
+        # else:
+            # print("Temperatura CPU: Não disponível")
 
         inserir(
             cpu,
             memoria,
             disco,
             rede,
-            temperatura
+            # temperatura
         )
 
 def selecionar(opcao):
@@ -195,13 +195,13 @@ def selecionar(opcao):
                         WHERE nome = 'Rede'
                         ORDER BY id
                     """
-                elif opcao == 6:
-                    query = """
-                        SELECT horario, valor
-                        FROM captura
-                        WHERE nome = 'Temperatura CPU'
-                        ORDER BY id
-                    """
+                # elif opcao == 6:
+                #     query = """
+                #         SELECT horario, valor
+                #         FROM captura
+                #         WHERE nome = 'Temperatura CPU'
+                #         ORDER BY id
+                #     """
                 cursor.execute(query)
                 resultado = cursor.fetchall()
 
@@ -228,8 +228,7 @@ def menu_visualizar():
 3 - Visualizar Memória
 4 - Visualizar Disco
 5 - Visualizar Rede
-6 - Visualizar Temperatura
-7 - Voltar
+6 - Voltar
 """)
         resposta = input(": ")
 
@@ -240,10 +239,10 @@ def menu_visualizar():
             print("Opção inválida.")
             continue
         
-        if resposta >= 1 and resposta <= 6:
+        if resposta >= 1 and resposta <= 5:
             selecionar(resposta)
 
-        elif resposta == 7:
+        elif resposta == 6:
             break
 
         else:
