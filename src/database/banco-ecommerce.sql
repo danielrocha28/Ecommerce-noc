@@ -85,10 +85,10 @@ INSERT INTO usuario (nome, email, senha, cargo, fk_empresa)
 VALUES ('William', 'analista@mercado.livre','87654321', 'Analista', 1);
 
 -- 3. Inserindo os usuários solicitados (Adicionado o 'fk_empresa')
-INSERT INTO usuario (nome, email, senha, cargo, enviou_email, fk_empresa) VALUES 
+INSERT INTO usuario (nome, email, senha, cargo, fk_empresa) VALUES 
 ('Valdito', 'valdito@gmail.com', 'Senha123', 'Gerente', 1),
 ('Ashey', 'ashey@gmail.com', 'Senha123', 'Analista', 1),
-('Math', 'math@gmail.com', 'Senha123', 'RH', default, 1);
+('Math', 'math@gmail.com', 'Senha123', 'RH', 1);
 
 INSERT INTO usuario (nome, email, senha, cargo, enviou_email, fk_empresa) VALUES 
 ('Math', 'math@gmail.com', 'Senha123', 'RH', default, 1);
