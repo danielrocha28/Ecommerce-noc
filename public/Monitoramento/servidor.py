@@ -1,11 +1,12 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import json
 import psutil as p
+import time as t
 
 
 def coletar_dados():
 
-    uso_cpu = p.cpu_percent(interval=0.5)
+    uso_cpu = p.cpu_percent(interval=1)
 
     cpu_count = p.cpu_count(logical=False)
 
@@ -24,6 +25,13 @@ def coletar_dados():
     disco_used = round(disco.used / (1024 ** 3), 2)
     disco_free = round(disco.free / (1024 ** 3), 2)
 
+    bytes_recebidos = round((p.net_io_counters().bytes_recv / pow(1024,2)),2)
+    bytes_enviados = round((p.net_io_counters().bytes_sent / pow(1024,2)),2)
+    mbps_total = round((bytes_recebidos - bytes_enviados), 2)
+
+    horario = t.localtime()
+    horario_formatado = t.strftime("%H:%M:%S", horario)
+
     return {
         "cpu_percent": uso_cpu,
         "cpu_count": cpu_count,
@@ -33,7 +41,11 @@ def coletar_dados():
         "memoria_used": memoria_used,
         "disco_total": disco_total,
         "disco_used": disco_used,
-        "disco_free": disco_free
+        "disco_free": disco_free,
+        "bytes_recebidos": bytes_recebidos,
+        "bytes_enviados": bytes_enviados,
+        "mbps_total": mbps_total,
+        "horario_formatado": horario_formatado,
     }
 
 
